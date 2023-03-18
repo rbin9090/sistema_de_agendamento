@@ -21,14 +21,14 @@
 	<nav class="menu-desktop">
 		<ul>
 			<li><a href="#">Agendamento</a></li>
-			<li><a href="#">Datas Disponiveis</a></li>
+			<li><a href="#" style="color: green;">Datas Disponiveis</a></li>
 			<li><a href="#">Especialistas</a></li>
 		</ul>
 	</nav><!--menu desktop-->
 </div><!--context-center-->
 </header>
 <section class="reserva">
-	<div class="center">
+	<div class="context-center">
 		<form method="POST">
 			<select>
 				<?php
@@ -38,8 +38,9 @@
 					if ($i < 10) {
 						$hora = '0'.$hora;
 					}
-					$hora.=' 00:00';
-					echo '<option value="'.$hora.'">'.$hora.'</option>';
+					$hora.=':00:00';
+					$dateTime = date('d/m/Y').' '.$hora;
+					echo '<option value="'.$dateTime.'">'.$dateTime.'</option>';
 
 				 }		
 				?>
