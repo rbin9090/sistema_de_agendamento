@@ -1,4 +1,8 @@
 <?php require'config.php';?>
+<?php
+
+$pdo = new PDO('mysql:host=localhost;dbname=sistema_agendamento','root','');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +45,7 @@
 				                   $date = DateTime::createFromFormat('d/m/Y H:i:s', $horario);
    								$horario = $date->format("Y-m-d H:i:s");
 				//$pdo = new PDO('mysql:host='.HOST.';'.'dbname='.DATABASE.','.USER.','.PASS.'');
-				$pdo = new PDO('mysql:host=localhost;dbname=sistema_agendamento','root','');
+				
 				$sql = $pdo->prepare("INSERT INTO `agendados` VALUES (null,?,?)");
 				$sql->execute(array($nome,$horario));
 				echo('<div class="sucesso">Seu Horário foi agendado com sucesso!</div>');
@@ -68,14 +72,23 @@
 						$hora = '0'.$hora;
 					}
 					$hora.=':00:00';
+
+					$verify = date('Y-m-d').' '.$hora;
+					$sql = $pdo->prepare("SELECT * FROM `agendados` WHERE horario = '$verify'");
+					$sql->execute();
+
+					if ($sql->rowCount() == 0) {
 					$dateTime = date('d/m/Y').' '.$hora;
 					echo '<option value="'.$dateTime.'">'.$dateTime.'</option>';
+					}
+
+
 
 				 }		
 				?>
 
 			</select>
-			<input type="submit" name="acao" value="enviar">
+			<input type="submit" name="acao" value="Agendar">
 		</form>
 	</div>
 
