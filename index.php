@@ -20,14 +20,36 @@
 	</div>
 	<nav class="menu-desktop">
 		<ul>
-			<li><a href="#">Reservas</a></li>
-			<li><a href="#">OPCAO2</a></li>
-			<li><a href="#">OPCAO3</a></li>
+			<li><a href="#">Agendamento</a></li>
+			<li><a href="#">Datas Disponiveis</a></li>
+			<li><a href="#">Especialistas</a></li>
 		</ul>
 	</nav><!--menu desktop-->
 </div><!--context-center-->
 </header>
+<section class="reserva">
+	<div class="center">
+		<form method="POST">
+			<select>
+				<?php
 
+				for ($i=0; $i <= 23; $i++) {
+					$hora = $i;
+					if ($i < 10) {
+						$hora = '0'.$hora;
+					}
+					$hora.=' 00:00';
+					echo '<option value="'.$hora.'">'.$hora.'</option>';
+
+				 }		
+				?>
+
+			</select>
+			<input type="submit" name="acao" value="enviar">
+		</form>
+	</div>
+
+</section>
 
 
 
