@@ -1,4 +1,5 @@
-<?php require'config.php';?>
+<?php date_default_timezone_set('America/Sao_Paulo'); 
+require'config.php';?>
 <?php
 
 $pdo = new PDO('mysql:host=localhost;dbname=sistema_agendamento','root','');
@@ -77,7 +78,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=sistema_agendamento','root','');
 					$sql = $pdo->prepare("SELECT * FROM `agendados` WHERE horario = '$verify'");
 					$sql->execute();
 
-					if ($sql->rowCount() == 0) {
+					if ($sql->rowCount() == 0 && strtotime($verify) > time()) {
 					$dateTime = date('d/m/Y').' '.$hora;
 					echo '<option value="'.$dateTime.'">'.$dateTime.'</option>';
 					}
