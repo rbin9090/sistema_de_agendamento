@@ -29,8 +29,37 @@
 </header>
 <section class="reserva">
 	<div class="context-center">
+		<?php
+
+		if (isset($_POST['acao'])) {
+					$nome = $_POST['nome'];
+					$horario = $_POST['datahora'];
+					
+
+			
+			try {
+				                   $date = DateTime::createFromFormat('d/m/Y H:i:s', $horario);
+   								$horario = $date->format("Y-m-d H:i:s");
+				//$pdo = new PDO('mysql:host='.HOST.';'.'dbname='.DATABASE.','.USER.','.PASS.'');
+				$pdo = new PDO('mysql:host=localhost;dbname=sistema_agendamento','root','');
+				$sql = $pdo->prepare("INSERT INTO `agendados` VALUES (null,?,?)");
+				$sql->execute(array($nome,$horario));
+				echo('<div class="sucesso">Seu Horário foi agendado com sucesso!</div>');
+
+			} catch (Exception $e) {
+				echo "falha na conexao";
+			}
+			
+
+			//quero fazer uma reserva ou um agendamento
+
+
+		}
+
+		?>
 		<form method="POST">
-			<select>
+			<input type="text" name="nome" placeholder="Qual é o seu nome?">
+			<select name="datahora">
 				<?php
 
 				for ($i=0; $i <= 23; $i++) {

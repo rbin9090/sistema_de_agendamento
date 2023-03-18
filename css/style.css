@@ -81,3 +81,20 @@ section.reserva input[type=submit]{
 	font-size: 19px;
 	margin-top: 10px;
 }
+
+section.reserva input[type=text]{
+
+	width: 100%;
+	height: 30px;
+	border: 0;
+
+}
+
+
+.sucesso{
+	width: 100%;
+	margin: 10px 0;
+	padding: 8px 15px;
+	background: #b9f6ca;
+	color: #ffff00;
+}
